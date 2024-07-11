@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Random CSS Pattern</title>
+    </head>
+    <style>
+        html {
+            --g: radial-gradient(closest-side, #fff calc(100% - 1px), #000);
+            background: repeating-conic-gradient(
+                        from 45deg,
+                        #fff 0% 25%,
+                        #000 0% 50%
+                    )
+                    3.125em 0,
+                linear-gradient(#a1c181 0 0), var(--g), var(--g) 3.125em 3.125em;
+            background-size: 6.25em 6.25em;
+            background-blend-mode: difference, darken;
+        }
+    </style>
+    <body>
+        <div>
+            <div>
+                <h1>Random CSS Pattern</h1>
+                Taken from
+                <a
+                    href="https://codepen.io/thebabydino/pen/YzvYqWL"
+                    target="_blank"
+                    >https://codepen.io/thebabydino/pen/YzvYqWL</a
+                >
+            </div>
+        </div>
+
+        <script type="text/javascript"></script>
+    </body>
+</html>

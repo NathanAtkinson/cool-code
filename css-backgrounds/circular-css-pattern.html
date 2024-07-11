@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Circular CSS Pattern</title>
+    </head>
+    <style>
+        html {
+            --s: 220px; /* control the size */
+            --c1: #774f38;
+            --c2: #f1d4af;
+
+            --_g: radial-gradient(
+                #0000 60%,
+                var(--c1) 61% 63%,
+                #0000 64% 77%,
+                var(--c1) 78% 80%,
+                #0000 81%
+            );
+            --_c: , #0000 75%, var(--c2) 0;
+            background: conic-gradient(at 12% 20% var(--_c))
+                    calc(var(--s) * 0.44) calc(0.9 * var(--s)),
+                conic-gradient(at 12% 20% var(--_c)) calc(var(--s) * -0.06)
+                    calc(0.4 * var(--s)),
+                conic-gradient(at 20% 12% var(--_c)) calc(0.9 * var(--s))
+                    calc(var(--s) * 0.44),
+                conic-gradient(at 20% 12% var(--_c)) calc(0.4 * var(--s))
+                    calc(var(--s) * -0.06),
+                var(--_g),
+                var(--_g) calc(var(--s) / 2) calc(var(--s) / 2) var(--c2);
+            background-size: var(--s) var(--s);
+        }
+    </style>
+    <body>
+        <div>
+            <div>
+                <h1>Circular CSS Pattern</h1>
+                Taken from
+                <a href="https://codepen.io/t_afif/pen/NWLyrKo" target="_blank"
+                    >https://codepen.io/t_afif/pen/NWLyrKo</a
+                >
+            </div>
+        </div>
+
+        <script type="text/javascript"></script>
+    </body>
+</html>

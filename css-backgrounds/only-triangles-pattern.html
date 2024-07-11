@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Only Triangles Pattern</title>
+    </head>
+    <style>
+        html {
+            --s: 105px; /* control the size */
+
+            background: conic-gradient(
+                        from 75deg,
+                        #b9b9b9 15deg,
+                        #dcdcdc 0 30deg,
+                        #0000 0 180deg,
+                        #dcdcdc 0 195deg,
+                        #b9b9b9 0 210deg,
+                        #0000 0
+                    )
+                    calc(0.5 * var(--s)) calc(0.5 * var(--s) / 0.577),
+                conic-gradient(
+                    #b9b9b9 30deg,
+                    #fafafa 0 75deg,
+                    #b9b9b9 0 90deg,
+                    #dcdcdc 0 105deg,
+                    #fafafa 0 150deg,
+                    #dcdcdc 0 180deg,
+                    #fafafa 0 210deg,
+                    #b9b9b9 0 256deg,
+                    #dcdcdc 0 270deg,
+                    #b9b9b9 0 286deg,
+                    #dcdcdc 0 331deg,
+                    #fafafa 0
+                );
+            background-size: var(--s) calc(var(--s) / 0.577);
+            /* 0.577=tan(30deg)*/
+        }
+    </style>
+    <body>
+        <div>
+            <div>
+                <h1>Only Triangles Pattern</h1>
+                Taken from
+                <a href="https://codepen.io/t_afif/pen/QWQGRjB" target="_blank"
+                    >https://codepen.io/t_afif/pen/QWQGRjB</a
+                >
+            </div>
+        </div>
+
+        <script type="text/javascript"></script>
+    </body>
+</html>

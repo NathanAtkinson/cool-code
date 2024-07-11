@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stairs Pattern</title>
+    </head>
+    <style>
+        html {
+            --s: 50px; /* control the size */
+
+            --_g: conic-gradient(at 50% 25%, #0000 75%, #f86466 0);
+            background: var(--_g), var(--_g) var(--s) var(--s),
+                var(--_g) calc(2 * var(--s)) calc(2 * var(--s)),
+                var(--_g) calc(3 * var(--s)) calc(3 * var(--s)),
+                repeating-linear-gradient(135deg, #000 0 12.5%, #fff 0 25%);
+            background-size: calc(4 * var(--s)) calc(4 * var(--s));
+        }
+    </style>
+    <body>
+        <div>
+            <div>
+                <h1>Stairs Pattern</h1>
+                Taken from
+                <a href="https://codepen.io/t_afif/pen/wvjPoNN" target="_blank"
+                    >https://codepen.io/t_afif/pen/wvjPoNN</a
+                >
+            </div>
+        </div>
+
+        <script type="text/javascript"></script>
+    </body>
+</html>

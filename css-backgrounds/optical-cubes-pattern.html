@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Optical Cubes Pattern</title>
+    </head>
+    <style>
+        html {
+            --s: 200px; /* control the size */
+
+            background: repeating-conic-gradient(
+                        from 30deg,
+                        #0000 0 120deg,
+                        #3c3c3c 0 180deg
+                    )
+                    calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+                repeating-conic-gradient(
+                    from 30deg,
+                    #1d1d1d 0 60deg,
+                    #4e4f51 0 120deg,
+                    #3c3c3c 0 180deg
+                );
+            background-size: var(--s) calc(var(--s) * 0.577);
+            /* 0.577 = tan(30deg)*/
+        }
+    </style>
+    <body>
+        <div>
+            <div>
+                <h1>Optical Cubes Pattern</h1>
+                Taken from
+                <a href="https://codepen.io/t_afif/pen/PoQYvzJ" target="_blank"
+                    >https://codepen.io/t_afif/pen/PoQYvzJ</a
+                >
+            </div>
+        </div>
+
+        <script type="text/javascript"></script>
+    </body>
+</html>

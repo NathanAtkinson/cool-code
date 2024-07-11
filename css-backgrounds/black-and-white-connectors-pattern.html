@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Black and White Connectors Pattern</title>
+    </head>
+    <style>
+        html {
+            --sl: calc(2em + 1px) calc(3em + -0.5px),
+                transparent calc(3em + 0.5px);
+            background: radial-gradient(
+                        #fff 1em,
+                        #000 calc(1em + 1px) 2em,
+                        #fff var(--sl)
+                    )
+                    4.2426406871em 4.2426406871em,
+                repeating-conic-gradient(#000 0% 25%, transparent 0% 50%)
+                    2.1213203436em 2.1213203436em,
+                radial-gradient(
+                    #000 1em,
+                    #fff calc(1em + 1px) 2em,
+                    #000 var(--sl)
+                );
+            background-size: 8.4852813742em 8.4852813742em,
+                16.9705627485em 16.9705627485em;
+            background-blend-mode: lighten;
+        }
+    </style>
+    <body>
+        <div>
+            <div>
+                <h1>Black and White Connectors Pattern</h1>
+                Taken from
+                <a
+                    href="https://codepen.io/thebabydino/pen/MWXVRjr"
+                    target="_blank"
+                    >https://codepen.io/thebabydino/pen/MWXVRjr</a
+                >
+            </div>
+        </div>
+
+        <script type="text/javascript"></script>
+    </body>
+</html>

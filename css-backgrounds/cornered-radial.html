@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cornered Radial</title>
+    </head>
+    <style>
+        :root {
+            --width: 100vw;
+            --height: 100vh;
+            --unit: 10px;
+            --color1: #060389;
+            --color2: #1425c2;
+            --color3: transparent;
+            --color5: #0818ae;
+        }
+
+        .css-pattern-component {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .css-pattern-component.pattern {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            width: var(--width);
+            height: var(--height);
+            background-color: var(--color1);
+        }
+        .css-pattern-component.pattern:after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: radial-gradient(
+                circle at center center,
+                var(--color3),
+                var(--color3) 40%,
+                var(--color1) 110%,
+                var(--color1)
+            );
+        }
+        .css-pattern-component.pattern__radial-corner {
+            background-image: repeating-radial-gradient(
+                circle at 0% 0%,
+                var(--color1),
+                var(--color1) var(--unit),
+                var(--color2) var(--unit),
+                var(--color2) calc(var(--unit) * 2)
+            );
+        }
+    </style>
+    <body>
+        <div class="css-pattern-component pattern pattern__radial-corner">
+            <div>
+                <h1>Cornered Radial</h1>
+                Taken from
+                <a
+                    href="https://codepen.io/100-css-patterns/pen/zYYvEQR"
+                    target="_blank"
+                    >https://codepen.io/100-css-patterns/pen/zYYvEQR</a
+                >
+            </div>
+        </div>
+
+        <script type="text/javascript"></script>
+    </body>
+</html>
