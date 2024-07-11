@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Radio Buttons as Clean Options</title>
+    </head>
+    <style>
+        .filter-switch label {
+            cursor: pointer;
+        }
+        .filter-switch-item input:checked + label {
+            color: inherit;
+        }
+        .filter-switch-item input:not(:checked) + label {
+            --bg-opacity: 0;
+            box-shadow: none;
+        }
+    </style>
+    <body class="flex flex-col items-center py-16 bg-gray-100">
+        <h1>Radio Buttons as Clean Options</h1>
+        Taken from
+        <a href="https://codepen.io/azhsetiawan/pen/ExPNBxb" target="_blank"
+            >https://codepen.io/azhsetiawan/pen/ExPNBxb</a
+        >
+
+        <!-- https://dribbble.com/shots/10128438-Tailwind-Exploration-Status-Filter -->
+
+        <ul
+            id="filter1"
+            class="filter-switch inline-flex items-center relative h-10 p-1 space-x-1 bg-gray-200 rounded-md font-semibold text-blue-600 my-4"
+        >
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter1"
+                    id="filter1-0"
+                    class="sr-only"
+                    checked
+                />
+                <label
+                    for="filter1-0"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    All
+                </label>
+                <div aria-hidden="true" class="filter-active"></div>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter1"
+                    id="filter1-1"
+                    class="sr-only"
+                />
+                <label
+                    for="filter1-1"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Upcoming
+                </label>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter1"
+                    id="filter1-2"
+                    class="sr-only"
+                />
+                <label
+                    for="filter1-2"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Ongoing
+                </label>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter1"
+                    id="filter1-3"
+                    class="sr-only"
+                />
+                <label
+                    for="filter1-3"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Complete
+                </label>
+            </li>
+        </ul>
+
+        <ul
+            id="filter2"
+            class="filter-switch inline-flex items-center relative h-10 p-1 space-x-1 bg-gray-200 rounded-md font-semibold text-blue-600 my-4 border border-gray-300"
+        >
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter2"
+                    id="filter2-0"
+                    class="sr-only"
+                    checked
+                />
+                <label
+                    for="filter2-0"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    All
+                </label>
+                <div aria-hidden="true" class="filter-active"></div>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter2"
+                    id="filter2-1"
+                    class="sr-only"
+                />
+                <label
+                    for="filter2-1"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Upcoming
+                </label>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter2"
+                    id="filter2-2"
+                    class="sr-only"
+                />
+                <label
+                    for="filter2-2"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Ongoing
+                </label>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter2"
+                    id="filter2-3"
+                    class="sr-only"
+                />
+                <label
+                    for="filter2-3"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Complete
+                </label>
+            </li>
+        </ul>
+
+        <ul
+            id="filter3"
+            class="filter-switch inline-flex items-center relative h-10 p-1 space-x-1 bg-gray-200 rounded-md font-semibold text-blue-600 my-4 border border-gray-400"
+        >
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter3"
+                    id="filter3-0"
+                    class="sr-only"
+                    checked
+                />
+                <label
+                    for="filter3-0"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    All
+                </label>
+                <div aria-hidden="true" class="filter-active"></div>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter3"
+                    id="filter3-1"
+                    class="sr-only"
+                />
+                <label
+                    for="filter3-1"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Upcoming
+                </label>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter3"
+                    id="filter3-2"
+                    class="sr-only"
+                />
+                <label
+                    for="filter3-2"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Ongoing
+                </label>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter3"
+                    id="filter3-3"
+                    class="sr-only"
+                />
+                <label
+                    for="filter3-3"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Complete
+                </label>
+            </li>
+        </ul>
+
+        <ul
+            id="filter4"
+            class="filter-switch inline-flex items-center relative h-10 p-1 space-x-1 bg-gray-300 rounded-md font-semibold text-blue-600 my-4"
+        >
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter4"
+                    id="filter4-0"
+                    class="sr-only"
+                    checked
+                />
+                <label
+                    for="filter4-0"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    All
+                </label>
+                <div aria-hidden="true" class="filter-active"></div>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter4"
+                    id="filter4-1"
+                    class="sr-only"
+                />
+                <label
+                    for="filter4-1"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Upcoming
+                </label>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter4"
+                    id="filter4-2"
+                    class="sr-only"
+                />
+                <label
+                    for="filter4-2"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Ongoing
+                </label>
+            </li>
+            <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+                <input
+                    type="radio"
+                    name="filter4"
+                    id="filter4-3"
+                    class="sr-only"
+                />
+                <label
+                    for="filter4-3"
+                    class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow"
+                >
+                    Complete
+                </label>
+            </li>
+        </ul>
+
+        <script type="text/javascript"></script>
+    </body>
+</html>
