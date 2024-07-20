@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Submit Button with simple progress bar</title>
+</head>
+
+<style>
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        background: #fbfbfb;
+    }
+
+    .container {
+        max-width: 350px;
+        margin: 150px auto;
+    }
+
+    .button-container {
+        position: relative;
+    }
+
+    .send-button {
+        width: 100%;
+        height: 45px;
+        border-radius: 45px;
+        margin: 0 auto;
+        background-color: #d31df4;
+        font-size: 1rem;
+        font-weight: 700;
+        border: 4px solid #d31df4;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: absolute;
+        bottom: 0;
+        overflow: hidden;
+    }
+
+    .send-button::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        height: 45px;
+        content: "Send";
+        display: block;
+        line-height: 45px;
+        color: #fbfbfb;
+        transition: all 0.3ss ease;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .send-button:focus {
+        outline: none;
+    }
+
+    .send-button--pressed {
+        -webkit-animation: sent 1.5s ease;
+        animation: sent 1.5s ease;
+    }
+
+    .send-button--pressed::before {
+        content: "Sent";
+        -webkit-animation: text 1.6s linear;
+        animation: text 1.6s linear;
+        color: #d31df4;
+    }
+
+    .send-button--pressed::after {
+        content: "";
+        background-color: #fbfbfb;
+        height: 100%;
+        width: 100%;
+        opacity: 1;
+        display: block;
+        border-radius: 45px;
+        -webkit-animation: bar 1s cubic-bezier(0.47, 0, 0.745, 0.715);
+        animation: bar 1s cubic-bezier(0.47, 0, 0.745, 0.715);
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    @-webkit-keyframes bar {
+        0% {
+            width: 0;
+            opacity: 0;
+        }
+
+        40% {
+            opacity: 1;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+
+    @keyframes bar {
+        0% {
+            width: 0;
+            opacity: 0;
+        }
+
+        40% {
+            opacity: 1;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+
+    @-webkit-keyframes sent {
+        0% {
+            height: 45px;
+        }
+
+        30%,
+        90% {
+            height: 22.5px;
+        }
+
+        100% {
+            height: 45px;
+        }
+    }
+
+    @keyframes sent {
+        0% {
+            height: 45px;
+        }
+
+        30%,
+        90% {
+            height: 22.5px;
+        }
+
+        100% {
+            height: 45px;
+        }
+    }
+
+    @-webkit-keyframes text {
+
+        0%,
+        90% {
+            top: 45px;
+        }
+
+        95% {
+            top: -22.5px;
+        }
+
+        100% {
+            top: 0;
+        }
+    }
+
+    @keyframes text {
+
+        0%,
+        90% {
+            top: 45px;
+        }
+
+        95% {
+            top: -22.5px;
+        }
+
+        100% {
+            top: 0;
+        }
+    }
+</style>
+
+<body>
+    <div>
+        <div>
+            <h1>Submit Button with simple progress bar</h1>
+            Taken from
+            <a href="https://codepen.io/chriskonings/pen/WpveaL"
+                target="_blank">https://codepen.io/chriskonings/pen/WpveaL</a>
+        </div>
+
+        <!-- Inspired by Denislav Jeliazkov: https://dribbble.com/shots/3321026-Send-Micro-Interactions-Free-Principle-File -->
+
+        <div class="container">
+
+
+            <div class="button-container">
+                <button class="send-button js-send-button">
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        document.querySelector('.js-send-button').addEventListener('click', function () {
+            this.classList.toggle('send-button--pressed');
+        });
+
+    </script>
+</body>
+
+</html>

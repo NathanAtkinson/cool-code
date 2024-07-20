@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Submit Button with Progress Bar</title>
+</head>
+
+<style>
+    #app {
+        font-size: 2rem;
+        font-family: "Helvetica Neue", sans-serif;
+    }
+
+    /* ---------------------------------- */
+    #app {
+        display: flex;
+    }
+
+    .ui-layer {
+        width: 100%;
+        margin-right: -100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+
+    .ui-layer[data-active=true] {
+        display: flex;
+    }
+
+    /* ---------------------------------- */
+    .ui-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: transparent;
+        padding: 0 3rem;
+        border-radius: 3rem;
+        border: 2px solid #DDDDDD;
+        letter-spacing: 1px;
+        color: var(--color);
+        display: block;
+        margin: auto;
+        cursor: pointer;
+        height: 5rem;
+    }
+
+    .ui-button.-icon {
+        width: 5rem;
+        padding: 0;
+        color: transparent;
+        text-shadow: 0 0 0 white;
+    }
+
+    /* ---------------------------------- */
+    .ui-progress {
+        --progress: 0%;
+        height: 0.5rem;
+        width: 15rem;
+        background-color: #DDDDDD;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    [data-active] .ui-progress {
+        -webkit-animation: fake-load 3s linear infinite alternate;
+        animation: fake-load 3s linear infinite alternate;
+    }
+
+    @-webkit-keyframes fake-load {
+        25% {
+            --progress: 30%;
+        }
+
+        40% {
+            --progress: 50%;
+        }
+
+        60% {
+            --progress: 80%;
+        }
+
+        80% {
+            --progress: 100%;
+        }
+
+        100% {
+            --progress: 65%;
+        }
+    }
+
+    @keyframes fake-load {
+        25% {
+            --progress: 30%;
+        }
+
+        40% {
+            --progress: 50%;
+        }
+
+        60% {
+            --progress: 80%;
+        }
+
+        80% {
+            --progress: 100%;
+        }
+
+        100% {
+            --progress: 65%;
+        }
+    }
+
+    .ui-progress:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #24A5EF;
+        border-radius: inherit;
+        transform: translateX(calc(-100% + var(--progress)));
+        transition-duration: 0.6s;
+        z-index: 5;
+    }
+
+    /* ---------------------------------- */
+    .ui-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg);
+    }
+
+    /* ---------------------------------- */
+    .goo-filter {
+        position: absolute;
+        visibility: hidden;
+    }
+
+    .-error {
+        text-align: center;
+        padding: 1rem 7rem;
+        align-items: center;
+    }
+
+    .-error .ui-message {
+        z-index: 3;
+    }
+
+    .-error .ui-goo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        filter: url("#goo");
+    }
+
+    .-error .ui-bg {
+        left: 0;
+        right: 0;
+        width: 70%;
+        margin: auto;
+        height: 100%;
+        padding: 2.5rem;
+        z-index: 2;
+        border-radius: 6rem;
+        pointer-events: none;
+    }
+
+    .-error .ui-button {
+        margin: 0;
+        border: none;
+        overflow: hidden;
+    }
+
+    .-error .ui-button span {
+        display: block;
+    }
+
+    .-error .ui-button.-retry {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    .-error .ui-button.-retry span {
+        transform: translateX(-100%);
+    }
+
+    .-error .ui-button.-cancel {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    .-error .ui-button.-cancel span {
+        transform: translateX(100%);
+    }
+
+    .-error .ui-bg,
+    .-error .ui-button,
+    .-error .ui-button span {
+        background-color: #E95D5D;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+        -webkit-animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+        animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
+
+    .-error[data-active] .ui-bg {
+        -webkit-animation-name: goo-scale-down;
+        animation-name: goo-scale-down;
+    }
+
+    @-webkit-keyframes goo-scale-down {
+        96% {
+            transform: scale(1, 0);
+            opacity: 1;
+        }
+
+        98% {
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1.4, 1);
+            opacity: 0;
+        }
+    }
+
+    @keyframes goo-scale-down {
+        96% {
+            transform: scale(1, 0);
+            opacity: 1;
+        }
+
+        98% {
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1.4, 1);
+            opacity: 0;
+        }
+    }
+
+    .-error[data-active] .ui-button,
+    .-error[data-active] .ui-button span {
+        -webkit-animation-name: error-button-in;
+        animation-name: error-button-in;
+    }
+
+    @-webkit-keyframes error-button-in {
+        20% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateX(0%);
+            opacity: 1;
+        }
+    }
+
+    @keyframes error-button-in {
+        20% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateX(0%);
+            opacity: 1;
+        }
+    }
+
+    .ui-title {
+        letter-spacing: 1px;
+        color: var(--color);
+    }
+
+    .ui-subtext {
+        font-size: 0.5rem;
+        letter-spacing: 0.5px;
+    }
+
+    /* ---------------------------------- */
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    *,
+    *:before,
+    *:after {
+        position: relative;
+        box-sizing: border-box;
+        transition: all 0.4s cubic-bezier(0.5, 0, 0.5, 1);
+    }
+</style>
+
+<body>
+    <div>
+        <div>
+            <h1>Submit Button with Progress Bar</h1>
+            Taken from
+            <a href="https://codepen.io/team/keyframers/pen/rrpbNE"
+                target="_blank">https://codepen.io/team/keyframers/pen/rrpbNE</a>
+        </div>
+
+        <a href="https://youtu.be/D0l9EFWWk9M" target="_blank" data-keyframers-credit style="color: #000"></a>
+        <script src="https://codepen.io/shshaw/pen/QmZYMG.js"></script>
+
+        <div id="app" data-state="send">
+            <div class="ui-layer" data-show="send">
+                <button class="ui-button" style="--color: #24A5EF">
+                    <div class="ui-bg" data-flip-key="bg"></div>
+                    <span>Send</span>
+                </button>
+            </div>
+            <div class="ui-layer" data-show="sending">
+                <div class="ui-progress" data-flip-key="bg">
+                </div>
+            </div>
+            <div class="ui-layer" data-show="sent">
+                <button class="ui-button" style="--color: #20D280">
+                    <span>Sent</span>
+                </button>
+            </div>
+            <div class="ui-layer -error" data-show="error">
+                <div class="ui-message">
+                    <div class="ui-title">Error</div>
+                    <div class="ui-subtext">
+                        WIFI no connected dumb dumb
+                    </div>
+                </div>
+
+                <div class="ui-goo">
+                    <div class="ui-bg" data-flip-key="bg"></div>
+                    <button class="ui-button -icon -retry" data-click="RETRY">
+                        <span>⟲</span>
+                    </button>
+                    <button class="ui-button -icon -cancel" data-click="CANCEL">
+                        <span>✕</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <svg class="goo-filter" viewBox="0 0 1 1">
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 50 -20"
+                    result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </svg>
+    </div>
+
+    <script type="text/javascript">
+        console.clear();
+
+        // FLIPPING!!!!
+        const flipping = new Flipping({
+            duration: 400
+        });
+
+
+        const elApp = document.querySelector("#app");
+        const elButtons = document.querySelectorAll(".ui-button");
+
+        function activate(state) {
+            flipping.read();
+            elApp.dataset.state = state;
+
+            document.querySelectorAll("[data-active]").forEach(el => {
+                el.dataset.active = false;
+            });
+
+            document.querySelectorAll(`[data-show~="${state}"]`).forEach(el => {
+                el.dataset.active = true;
+            });
+            flipping.flip();
+        }
+
+        const states = {
+            send: {
+                on: {
+                    CLICK: "sending"
+                }
+            },
+
+
+            sending: {
+                onEntry: () => {
+                    setTimeout(() => {
+                        if (Math.random() < 0.3) {
+                            send("SENT");
+                        } else {
+                            send("ERROR");
+                        }
+                    }, 2000);
+                },
+                on: {
+                    SENT: "sent",
+                    ERROR: "error"
+                }
+            },
+
+
+            error: {
+                on: {
+                    RETRY: "sending",
+                    CANCEL: "send"
+                }
+            },
+
+
+            sent: {
+                on: {
+                    CLICK: "send"
+                }
+            }
+        };
+
+
+
+
+        const machine = {
+            initial: elApp.dataset.state,
+            states
+        };
+
+
+        let currentState = machine.initial;
+
+        function send(event) {
+            const nextState =
+                // get the next state based on the event
+                // get the current state
+                machine.states[currentState].on[event] || currentState;
+
+            if (currentState !== nextState) {
+                const entryAction = machine.states[nextState].onEntry;
+
+                if (entryAction) {
+                    entryAction();
+                }
+            }
+
+            activate(nextState);
+            currentState = nextState;
+        }
+
+        activate(currentState);
+
+        [...elButtons].forEach(el => {
+            el.addEventListener("click", () => {
+                send(el.dataset.click || "CLICK");
+            });
+        });
+    </script>
+</body>
+
+</html>

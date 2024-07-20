@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Airplane Send Button</title>
+</head>
+
+<style>
+    html,
+    body {
+        padding: 0px;
+        margin: 0px;
+        background: #222;
+        font-family: "Ubuntu", sans-serif;
+        color: #FFF;
+        text-align: center;
+    }
+
+    body * {
+        box-sizing: border-box;
+        padding: 0px;
+    }
+
+    #nojs {
+        display: none;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        position: relative;
+        display: inline-block;
+        background: #465;
+        border: 0px;
+        border-radius: 2px;
+        margin: 0px;
+        color: #FFF;
+        font-size: 14px;
+        height: 60px;
+        line-height: 60px;
+        width: 200px;
+        text-align: left;
+        padding-left: 30px;
+        overflow: hidden;
+    }
+
+    .btn * {
+        display: inline-block;
+    }
+
+    .btn .textNormal {
+        transition: all 0.5s;
+    }
+
+    .btn .textSent {
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        left: 0px;
+    }
+
+    .btn .icon {
+        position: absolute;
+        top: 14px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        pointer-events: none;
+    }
+
+    .btn .icon i {
+        transform: rotateZ(-45deg) rotateX(25deg) rotateY(15deg);
+        transform-origin: center;
+        transition: all 0.25s;
+        position: absolute;
+        font-size: 28px;
+    }
+
+    #nojs:not(:checked)~.btn:hover .icon i {
+        transform: rotateZ(-55deg) rotateX(5deg) rotateY(15deg);
+    }
+
+    #nojs:checked~.btn {
+        animation: colorOpacity 4s linear, clear 1s;
+        animation-delay: 0s, 4s;
+        background: transparent;
+    }
+
+    #nojs:checked~.btn .textNormal {
+        opacity: 0;
+    }
+
+    #nojs:checked~.btn .textSent {
+        opacity: 0;
+        animation: showIn 1s, show 1s infinite;
+        animation-delay: 2.75s, 2.75s;
+    }
+
+    #nojs:checked~.btn .icon {
+        animation: flyGrid 1s linear;
+        transform: translateX(1000px);
+    }
+
+    #nojs:checked~.btn .icon i {
+        transform: rotateZ(-55deg) rotateX(5deg) rotateY(15deg);
+        animation: flyRotate 1s linear;
+    }
+
+    @keyframes flyGrid {
+        0% {
+            transform: translate3d(0px, 0px, 0px);
+        }
+
+        75% {
+            transform: translate3d(-130px, 0px, 0px);
+        }
+
+        100% {
+            transform: translate3d(100px, 0px, 0px);
+        }
+    }
+
+    @keyframes flyRotate {
+        0% {
+            transform: rotateZ(-55deg) rotateX(5deg) rotateY(15deg);
+        }
+
+        75% {
+            transform: rotateZ(-75deg) rotateX(0deg) rotateY(0deg);
+        }
+
+        100% {
+            transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+        }
+    }
+
+    @keyframes colorOpacity {
+        0% {
+            background: #465;
+        }
+
+        40% {
+            background: #465;
+        }
+
+        50% {
+            background: #FFF;
+        }
+
+        100% {
+            background: #FFF;
+        }
+    }
+
+    @keyframes clear {
+        from {
+            background: #FFF;
+        }
+
+        to {
+            background: transparent;
+        }
+    }
+
+    @keyframes show {
+
+        from,
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes showIn {
+        to {
+            opacity: 0;
+        }
+
+        from {
+            opacity: 1;
+        }
+    }
+
+    .lots {
+        position: absolute;
+        top: 0px;
+        left: -10px;
+    }
+
+    .lots i {
+        position: absolute;
+    }
+
+    .lots i:nth-child(1n) {
+        left: -577px;
+        top: -25px;
+        font-size: 29px;
+    }
+
+    .lots i:nth-child(2n) {
+        left: -591px;
+        top: -1px;
+        font-size: 30px;
+    }
+
+    .lots i:nth-child(3n) {
+        left: -256px;
+        top: 49px;
+        font-size: 31px;
+    }
+
+    .lots i:nth-child(4n) {
+        left: -485px;
+        top: 16px;
+        font-size: 32px;
+    }
+
+    .lots i:nth-child(5n) {
+        left: -532px;
+        top: 24px;
+        font-size: 33px;
+    }
+
+    .lots i:nth-child(6n) {
+        left: -255px;
+        top: -14px;
+        font-size: 34px;
+    }
+
+    .lots i:nth-child(7n) {
+        left: -423px;
+        top: 14px;
+        font-size: 35px;
+    }
+
+    .lots i:nth-child(8n) {
+        left: -589px;
+        top: -10px;
+        font-size: 36px;
+    }
+
+    .lots i:nth-child(9n) {
+        left: -489px;
+        top: 47px;
+        font-size: 37px;
+    }
+
+    .lots i:nth-child(10n) {
+        left: -471px;
+        top: 10px;
+        font-size: 38px;
+    }
+
+    .lots i:nth-child(11n) {
+        left: -283px;
+        top: -31px;
+        font-size: 39px;
+    }
+
+    .lots i:nth-child(12n) {
+        left: -254px;
+        top: 46px;
+        font-size: 40px;
+    }
+
+    .lots i:nth-child(13n) {
+        left: -658px;
+        top: 44px;
+        font-size: 41px;
+    }
+
+    .lots i:nth-child(14n) {
+        left: -204px;
+        top: 22px;
+        font-size: 42px;
+    }
+
+    .lots i:nth-child(15n) {
+        left: -652px;
+        top: 36px;
+        font-size: 43px;
+    }
+
+    .lots i:nth-child(16n) {
+        left: -219px;
+        top: -14px;
+        font-size: 44px;
+    }
+
+    .lots i:nth-child(17n) {
+        left: -564px;
+        top: -15px;
+        font-size: 45px;
+    }
+
+    .lots i:nth-child(18n) {
+        left: -630px;
+        top: -12px;
+        font-size: 46px;
+    }
+
+    .lots i:nth-child(19n) {
+        left: -532px;
+        top: 31px;
+        font-size: 47px;
+    }
+
+    .lots i:nth-child(20n) {
+        left: -678px;
+        top: -22px;
+        font-size: 48px;
+    }
+
+    .lots i:nth-child(21n) {
+        left: -457px;
+        top: 46px;
+        font-size: 49px;
+    }
+
+    .lots i:nth-child(22n) {
+        left: -469px;
+        top: 26px;
+        font-size: 50px;
+    }
+
+    .lots i:nth-child(23n) {
+        left: -479px;
+        top: 38px;
+        font-size: 51px;
+    }
+
+    .lots i:nth-child(24n) {
+        left: -597px;
+        top: -48px;
+        font-size: 52px;
+    }
+
+    .lots i:nth-child(25n) {
+        left: -629px;
+        top: -4px;
+        font-size: 53px;
+    }
+
+    .lots i:nth-child(26n) {
+        left: -410px;
+        top: -41px;
+        font-size: 54px;
+    }
+
+    .lots i:nth-child(27n) {
+        left: -212px;
+        top: -10px;
+        font-size: 55px;
+    }
+
+    .lots i:nth-child(28n) {
+        left: -208px;
+        top: 16px;
+        font-size: 56px;
+    }
+
+    .lots i:nth-child(29n) {
+        left: -574px;
+        top: -31px;
+        font-size: 57px;
+    }
+
+    .lots i:nth-child(30n) {
+        left: -415px;
+        top: 15px;
+        font-size: 58px;
+    }
+
+    .lots i:nth-child(31n) {
+        left: -428px;
+        top: 21px;
+        font-size: 59px;
+    }
+
+    .lots i:nth-child(32n) {
+        left: -539px;
+        top: -7px;
+        font-size: 60px;
+    }
+
+    .lots i:nth-child(33n) {
+        left: -291px;
+        top: -20px;
+        font-size: 61px;
+    }
+
+    .lots i:nth-child(34n) {
+        left: -453px;
+        top: 33px;
+        font-size: 62px;
+    }
+
+    .lots i:nth-child(35n) {
+        left: -426px;
+        top: 22px;
+        font-size: 63px;
+    }
+
+    .lots i:nth-child(36n) {
+        left: -408px;
+        top: -23px;
+        font-size: 64px;
+    }
+
+    .lots i:nth-child(37n) {
+        left: -612px;
+        top: 39px;
+        font-size: 65px;
+    }
+
+    .lots i:nth-child(38n) {
+        left: -508px;
+        top: -9px;
+        font-size: 66px;
+    }
+
+    .lots i:nth-child(39n) {
+        left: -378px;
+        top: -2px;
+        font-size: 67px;
+    }
+
+    .lots i:nth-child(40n) {
+        left: -681px;
+        top: -11px;
+        font-size: 68px;
+    }
+
+    .lots i:nth-child(41n) {
+        left: -254px;
+        top: -27px;
+        font-size: 69px;
+    }
+
+    .lots i:nth-child(42n) {
+        left: -510px;
+        top: 21px;
+        font-size: 70px;
+    }
+
+    .lots i:nth-child(43n) {
+        left: -292px;
+        top: 11px;
+        font-size: 71px;
+    }
+
+    .lots i:nth-child(44n) {
+        left: -370px;
+        top: 8px;
+        font-size: 72px;
+    }
+
+    .lots i:nth-child(45n) {
+        left: -576px;
+        top: 9px;
+        font-size: 73px;
+    }
+
+    .lots i:nth-child(46n) {
+        left: -507px;
+        top: 19px;
+        font-size: 74px;
+    }
+
+    .lots i:nth-child(47n) {
+        left: -415px;
+        top: -32px;
+        font-size: 75px;
+    }
+
+    .lots i:nth-child(48n) {
+        left: -678px;
+        top: -32px;
+        font-size: 76px;
+    }
+
+    .lots i:nth-child(49n) {
+        left: -582px;
+        top: -42px;
+        font-size: 77px;
+    }
+
+    .lots i:nth-child(50n) {
+        left: -468px;
+        top: 27px;
+        font-size: 78px;
+    }
+
+    .lots i:nth-child(51n) {
+        left: -254px;
+        top: -8px;
+        font-size: 79px;
+    }
+
+    .lots i:nth-child(52n) {
+        left: -413px;
+        top: -32px;
+        font-size: 80px;
+    }
+
+    .lots i:nth-child(53n) {
+        left: -630px;
+        top: 12px;
+        font-size: 81px;
+    }
+
+    .lots i:nth-child(54n) {
+        left: -436px;
+        top: -5px;
+        font-size: 82px;
+    }
+
+    .lots i:nth-child(55n) {
+        left: -641px;
+        top: 36px;
+        font-size: 83px;
+    }
+
+    .lots i:nth-child(56n) {
+        left: -420px;
+        top: 5px;
+        font-size: 84px;
+    }
+
+    .lots i:nth-child(57n) {
+        left: -568px;
+        top: 16px;
+        font-size: 85px;
+    }
+
+    .lots i:nth-child(58n) {
+        left: -588px;
+        top: -37px;
+        font-size: 86px;
+    }
+
+    .lots i:nth-child(59n) {
+        left: -553px;
+        top: -1px;
+        font-size: 87px;
+    }
+
+    .lots i:nth-child(60n) {
+        left: -440px;
+        top: 21px;
+        font-size: 88px;
+    }
+
+    .lots i:nth-child(61n) {
+        left: -568px;
+        top: 25px;
+        font-size: 89px;
+    }
+
+    .lots i:nth-child(62n) {
+        left: -643px;
+        top: 38px;
+        font-size: 90px;
+    }
+
+    .lots i:nth-child(63n) {
+        left: -469px;
+        top: -34px;
+        font-size: 91px;
+    }
+
+    .lots i:nth-child(64n) {
+        left: -416px;
+        top: 16px;
+        font-size: 92px;
+    }
+
+    .lots i:nth-child(65n) {
+        left: -617px;
+        top: 42px;
+        font-size: 93px;
+    }
+
+    .lots i:nth-child(66n) {
+        left: -344px;
+        top: -20px;
+        font-size: 94px;
+    }
+
+    .lots i:nth-child(67n) {
+        left: -550px;
+        top: 13px;
+        font-size: 95px;
+    }
+
+    .lots i:nth-child(68n) {
+        left: -377px;
+        top: 16px;
+        font-size: 96px;
+    }
+
+    .lots i:nth-child(69n) {
+        left: -308px;
+        top: 31px;
+        font-size: 97px;
+    }
+
+    .lots i:nth-child(70n) {
+        left: -474px;
+        top: 11px;
+        font-size: 98px;
+    }
+
+    .lots i:nth-child(71n) {
+        left: -259px;
+        top: -31px;
+        font-size: 99px;
+    }
+
+    .lots i:nth-child(72n) {
+        left: -302px;
+        top: 25px;
+        font-size: 100px;
+    }
+
+    .lots i:nth-child(73n) {
+        left: -375px;
+        top: -35px;
+        font-size: 101px;
+    }
+
+    .lots i:nth-child(74n) {
+        left: -491px;
+        top: -49px;
+        font-size: 102px;
+    }
+
+    .lots i:nth-child(75n) {
+        left: -565px;
+        top: 15px;
+        font-size: 103px;
+    }
+
+    .lots i:nth-child(76n) {
+        left: -459px;
+        top: -15px;
+        font-size: 104px;
+    }
+
+    .lots i:nth-child(77n) {
+        left: -593px;
+        top: 7px;
+        font-size: 105px;
+    }
+
+    .lots i:nth-child(78n) {
+        left: -687px;
+        top: -27px;
+        font-size: 106px;
+    }
+
+    .lots i:nth-child(79n) {
+        left: -455px;
+        top: 33px;
+        font-size: 107px;
+    }
+
+    .lots i:nth-child(80n) {
+        left: -460px;
+        top: 46px;
+        font-size: 108px;
+    }
+
+    .lots i:nth-child(81n) {
+        left: -545px;
+        top: 44px;
+        font-size: 109px;
+    }
+
+    .lots i:nth-child(82n) {
+        left: -411px;
+        top: -45px;
+        font-size: 110px;
+    }
+
+    .lots i:nth-child(83n) {
+        left: -558px;
+        top: -25px;
+        font-size: 111px;
+    }
+
+    .lots i:nth-child(84n) {
+        left: -379px;
+        top: 20px;
+        font-size: 112px;
+    }
+
+    .lots i:nth-child(85n) {
+        left: -464px;
+        top: -43px;
+        font-size: 113px;
+    }
+
+    .lots i:nth-child(86n) {
+        left: -440px;
+        top: -2px;
+        font-size: 114px;
+    }
+
+    .lots i:nth-child(87n) {
+        left: -268px;
+        top: 34px;
+        font-size: 115px;
+    }
+
+    .lots i:nth-child(88n) {
+        left: -329px;
+        top: 39px;
+        font-size: 116px;
+    }
+
+    .lots i:nth-child(89n) {
+        left: -626px;
+        top: 43px;
+        font-size: 117px;
+    }
+
+    .lots i:nth-child(90n) {
+        left: -352px;
+        top: 2px;
+        font-size: 118px;
+    }
+
+    .lots i:nth-child(91n) {
+        left: -521px;
+        top: 2px;
+        font-size: 119px;
+    }
+
+    .lots i:nth-child(92n) {
+        left: -421px;
+        top: 29px;
+        font-size: 120px;
+    }
+
+    .lots i:nth-child(93n) {
+        left: -444px;
+        top: 24px;
+        font-size: 121px;
+    }
+
+    .lots i:nth-child(94n) {
+        left: -673px;
+        top: 32px;
+        font-size: 122px;
+    }
+
+    .lots i:nth-child(95n) {
+        left: -384px;
+        top: 46px;
+        font-size: 123px;
+    }
+
+    .lots i:nth-child(96n) {
+        left: -467px;
+        top: -9px;
+        font-size: 124px;
+    }
+
+    .lots i:nth-child(97n) {
+        left: -534px;
+        top: 38px;
+        font-size: 125px;
+    }
+
+    .lots i:nth-child(98n) {
+        left: -626px;
+        top: -19px;
+        font-size: 126px;
+    }
+
+    .lots i:nth-child(99n) {
+        left: -599px;
+        top: 30px;
+        font-size: 127px;
+    }
+
+    .lots i:nth-child(100n) {
+        left: -554px;
+        top: -25px;
+        font-size: 128px;
+    }
+
+    #nojs:checked~.btn .lots i {
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+        transform: translateX(920px);
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(1n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(2n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(3n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(4n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(5n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(6n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(7n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(8n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(9n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(10n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(11n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(12n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(13n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(14n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(15n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(16n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(17n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(18n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(19n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(20n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(21n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(22n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(23n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(24n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(25n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(26n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(27n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(28n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(29n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(30n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(31n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(32n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(33n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(34n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(35n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(36n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(37n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(38n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(39n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(40n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(41n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(42n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(43n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(44n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(45n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(46n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(47n) {
+        animation: lots 2s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(48n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(49n) {
+        animation: lots 3s ease;
+        animation-delay: 1s;
+    }
+
+    #nojs:checked~.btn .lots i:nth-child(50n) {
+        animation: lots 1s ease;
+        animation-delay: 1s;
+    }
+
+    @keyframes lots {
+        from {
+            transform: translateX(0px);
+        }
+
+        to {
+            transform: translateX(920px);
+        }
+    }
+</style>
+
+<body>
+    <div>
+        <div>
+            <h1>Airplane Send Button</h1>
+            Taken from
+            <a href="https://codepen.io/sean_codes/pen/EWJyqe"
+                target="_blank">https://codepen.io/sean_codes/pen/EWJyqe</a>
+        </div>
+
+
+        <p>I think this is going to be interesting</p>
+        <input id="nojs" type="checkbox" />
+        <label class="btn" for="nojs">
+            <div class="textNormal">Send Message</div>
+            <div class="textSent">Sent!</div>
+            <div class="icon"><i class="material-icons">send</i></div>
+            <div class="lots"><i class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i><i
+                    class="material-icons">send</i><i class="material-icons">send</i>
+            </div>
+        </label>
+    </div>
+
+    <script type="text/javascript">
+        setTimeout(function () {
+            document.querySelector('#nojs').checked = true;
+        }, 750)
+
+        setTimeout(function () {
+            document.querySelector('#nojs').checked = false;
+        }, 3000)
+    </script>
+</body>
+
+</html>
