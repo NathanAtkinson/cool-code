@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Original Image to Negative Image Slider</title>
+</head>
+<style>
+    #btn--yp {
+        box-sizing: content-box;
+        position: fixed;
+        z-index: 9;
+        bottom: 1em;
+        right: 1em;
+        border: solid 1em transparent;
+        width: 4.625em;
+        height: 3.25em;
+        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2017/icon-yp.svg) 50%/cover content-box;
+        font: 16px/1.25 trebuchet ms, sans-serif;
+        text-indent: 200vw;
+        text-shadow: none;
+        filter: grayscale(1) drop-shadow(0 0 1px #e8e0e0);
+        transition: 0.5s;
+        white-space: nowrap;
+    }
+
+    #btn--yp:before {
+        box-sizing: inherit;
+        position: absolute;
+        left: 0;
+        bottom: 100%;
+        margin: 1em -0.5em;
+        padding: 0.5em;
+        width: 100%;
+        border-radius: 5px;
+        background: #e8e0e0;
+        color: #000;
+        text-align: center;
+        text-decoration: none;
+        text-indent: 0vw;
+        white-space: normal;
+        animation: float 1s ease-in-out infinite alternate;
+        content: attr(data-txt);
+    }
+
+    #btn--yp:hover,
+    #btn--yp:focus {
+        outline: none;
+        filter: grayscale(0) drop-shadow(0 0 1px crimson);
+    }
+
+    @keyframes float {
+        to {
+            transform: translateY(0.75em);
+        }
+    }
+
+    * {
+        margin: 0;
+    }
+
+    body,
+    div {
+        display: grid;
+    }
+
+    body {
+        overflow-x: hidden;
+        height: 100vh;
+        perspective: 35em;
+        background: #333;
+    }
+
+    .card {
+        --hl: 0;
+        --dif-inf: clamp(0, calc(var(--k) - 15), 1);
+        --dif-sup: clamp(0, calc(100 - 15 - var(--k)), 1);
+        justify-content: space-between;
+        place-self: center;
+        overflow: hidden;
+        width: max(8em, calc(80*1vw));
+        height: max(8em, calc(80*1vh));
+        border-radius: 0.5em;
+        box-shadow: 4px 4px 23px;
+        filter: sepia(calc(1 - var(--hl)));
+        transition: 0.25s;
+        transition-property: transform, filter;
+    }
+
+    .card::before,
+    .card::after {
+        --q: 0;
+        --not-q: calc(1 - var(--q));
+        z-index: 1;
+        grid-area: 1/calc(1 + var(--q));
+        align-self: start;
+        margin: 0.5em;
+        padding: 0 0.25em;
+        border-radius: 0.25em;
+        opacity: calc(var(--hl)*(var(--not-q)*var(--dif-inf) + var(--q)*var(--dif-sup)));
+        background: tomato;
+        font: 300 1em/1.5 lato, sans-serif;
+        text-transform: uppercase;
+        filter: Invert(var(--q));
+        pointer-events: none;
+        transition: opacity 0.25s;
+        content: "before";
+    }
+
+    .card::after {
+        --q: 1;
+        content: "after";
+    }
+
+    .card:hover,
+    .card:focus-within {
+        --hl: 1;
+    }
+
+    .card:hover {
+        transform: rotatex(calc(clamp(-.5, var(--j), .5)*10deg)) rotatey(calc(clamp(-.5, var(--i), .5)*-10deg));
+    }
+
+    [type=range] {
+        --p: calc(2.5em + var(--k)*(100% - 5em)/100);
+        grid-area: 1/1/span 1/span 2;
+        justify-self: center;
+        width: calc(100% + 5em);
+        cursor: pointer;
+    }
+
+    [type=range],
+    [type=range]::-webkit-slider-thumb,
+    [type=range]::-webkit-slider-runnable-track {
+        -webkit-appearance: none;
+    }
+
+    [type=range]::-webkit-slider-runnable-track {
+        border: none;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent var(--p), #fff 0), url(https://images.unsplash.com/photo-1611845528017-75215e6d662c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=1600) 50%/cover;
+        background-blend-mode: exclusion;
+    }
+
+    [type=range]::-moz-range-track {
+        border: none;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent var(--p), #fff 0), url(https://images.unsplash.com/photo-1611845528017-75215e6d662c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=1600) 50%/cover;
+        background-blend-mode: exclusion;
+    }
+
+    [type=range]::-webkit-slider-thumb {
+        --list: #fff 60deg, transparent 0%;
+        border: none;
+        width: 5em;
+        height: 100%;
+        background: conic-gradient(from 60deg, var(--list)) 0/37.5%, conic-gradient(from -120deg, var(--list)) 100%/37.5%, radial-gradient(circle, transparent calc(2.5em - 2px - 1px), #fff calc(2.5em - 2px) calc(2.5em - 1px), transparent 2.5em), linear-gradient(#fff calc(50% - 2.5em + .5*2px), transparent 0 calc(50% + 2.5em - .5*2px), #fff 0) 50%/2px;
+        background-repeat: no-repeat;
+        filter: drop-shadow(2px 2px 3px #000);
+        cursor: ew-resize;
+    }
+
+    [type=range]::-moz-range-thumb {
+        --list: #fff 60deg, transparent 0%;
+        border: none;
+        width: 5em;
+        height: 100%;
+        background: conic-gradient(from 60deg, var(--list)) 0/37.5%, conic-gradient(from -120deg, var(--list)) 100%/37.5%, radial-gradient(circle, transparent calc(2.5em - 2px - 1px), #fff calc(2.5em - 2px) calc(2.5em - 1px), transparent 2.5em), linear-gradient(#fff calc(50% - 2.5em + .5*2px), transparent 0 calc(50% + 2.5em - .5*2px), #fff 0) 50%/2px;
+        background-repeat: no-repeat;
+        filter: drop-shadow(2px 2px 3px #000);
+        cursor: ew-resize;
+    }
+
+    [type=range]:focus {
+        outline: none;
+    }
+</style>
+
+<body>
+    <div>
+        <div>
+            <h1>Original Image to Negative Image Slider</h1>
+            Taken from
+            <a href="https://codepen.io/thebabydino/pen/OJbmxPq"
+                target="_blank">https://codepen.io/thebabydino/pen/OJbmxPq</a>
+        </div>
+
+        <div class='card' style='--k: 50'>
+            <input type='range' />
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        /*
+Created for my Taming Blend Modes: `difference` and `exclusion` (https://css-tricks.com/taming-blend-modes-difference-and-exclusion/) article on CSS-Tricks - check it out for context!
+*/
+
+        const _CARD = document.querySelector('.card');
+
+        let rect;
+
+        function setRect() { rect = _CARD.getBoundingClientRect(); }
+
+        setRect();
+
+        addEventListener('input', e => {
+            _CARD.style.setProperty('--k', +e.target.value);
+        }, false);
+
+        addEventListener('resize', e => setRect, false);
+
+        _CARD.addEventListener('mousemove', e => {
+            _CARD.style.setProperty('--i', +((e.clientX - rect.left) / rect.width - .5).toFixed(2));
+            _CARD.style.setProperty('--j', +((e.clientY - rect.top) / rect.height - .5).toFixed(2));
+        }, false);
+    </script>
+</body>
+
+</html>

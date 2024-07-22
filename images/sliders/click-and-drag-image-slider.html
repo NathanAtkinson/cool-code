@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Click and Drag Image Slider</title>
+</head>
+<style>
+    .container {
+        position: relative;
+        height: 300px;
+        width: 500px;
+    }
+
+    .img-before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 500px;
+        height: 300px;
+        background-image: url("https://images.unsplash.com/photo-1595925051509-1bd0831fe7c9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+        background-size: cover;
+    }
+
+    .img-after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 300px;
+        background-image: url("https://images.unsplash.com/photo-1596520093084-e527c9c388ca?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80");
+        background-size: cover;
+        background-position: right;
+        border-left: 3px solid;
+        box-sizing: border-box;
+        transform: translateX(250px)
+    }
+
+    .slider-hand {
+        height: 30px;
+        width: 30px;
+        background-color: purple;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.5);
+        cursor: grab;
+    }
+</style>
+
+<body>
+    <div>
+        <div>
+            <h1>Click and Drag Image Slider</h1>
+            Taken from
+            <a href="https://codepen.io/etd2w/pen/RwoNpOq" target="_blank">https://codepen.io/etd2w/pen/RwoNpOq</a>
+        </div>
+
+        <div class="container">
+            <div class="img-before">
+            </div>
+            <div class="img-after">
+                <div class="slider-hand"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        const container = document.querySelector('.container');
+        const imgAfter = document.querySelector('.img-after');
+        const slider = document.querySelector('.slider-hand');
+
+        const handleSlide = event => {
+            imgAfter.style.transform = `translate(${event.pageX}px)`
+            imgAfter.style.width = `${500 - event.pageX}px`
+        }
+
+        slider.addEventListener('mousedown', (event) => {
+            slider.style.cursor = 'grabbing';
+
+            container.addEventListener('mousemove', handleSlide)
+        })
+
+        window.addEventListener('mouseup', () => {
+            slider.style.cursor = 'grab';
+
+            container.removeEventListener('mousemove', handleSlide)
+        })
+    </script>
+</body>
+
+</html>

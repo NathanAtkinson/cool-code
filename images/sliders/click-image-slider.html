@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Click Image Slider</title>
+</head>
+<style>
+    .row {
+        float: left;
+    }
+
+    .imageReveal {
+        margin-right: 20px;
+    }
+
+    .row.small .imageReveal {
+        display: inline-block;
+    }
+
+    .row.small .imageReveal-caption {
+        top: auto;
+        bottom: 20px;
+    }
+</style>
+
+<body>
+    <div>
+        <div>
+            <h1>Click Image Slider</h1>
+            Taken from
+            <a href="https://codepen.io/massiebn/pen/oNLrdw" target="_blank">https://codepen.io/massiebn/pen/oNLrdw</a>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script
+            src="https://www.jqueryscript.net/demo/jQuery-Before-After-Image-Comparison-Plugin-Image-Reveal/dist/jquery.imageReveal.js"></script>
+        <link rel="stylesheet"
+            href="https://www.jqueryscript.net/demo/jQuery-Before-After-Image-Comparison-Plugin-Image-Reveal/dist/jquery.imageReveal.min.css" />
+
+        <div class="row big">
+            <div id="example1" class="imageReveal"> <img
+                    src="https://www.jqueryscript.net/demo/jQuery-Before-After-Image-Comparison-Plugin-Image-Reveal/dist/demo/images/1-before.jpg"
+                    title="Before"> <img
+                    src="https://www.jqueryscript.net/demo/jQuery-Before-After-Image-Comparison-Plugin-Image-Reveal/dist/demo/images/1-after.jpg"
+                    title="After"> </div>
+        </div>
+        <div class="row small">
+            <div id="example2" class="imageReveal"> <img
+                    src="https://www.jqueryscript.net/demo/jQuery-Before-After-Image-Comparison-Plugin-Image-Reveal/dist/demo/images/2-before.jpg"
+                    title="Before"> <img
+                    src="https://www.jqueryscript.net/demo/jQuery-Before-After-Image-Comparison-Plugin-Image-Reveal/dist/demo/images/2-after.jpg"
+                    title="After"> </div>
+            <div id="example3" class="imageReveal"> <img
+                    src="https://www.jqueryscript.net/demo/jQuery-Before-After-Image-Comparison-Plugin-Image-Reveal/dist/demo/images/3-before.jpg"
+                    title="Cute"> <img
+                    src="https://www.jqueryscript.net/demo/jQuery-Before-After-Image-Comparison-Plugin-Image-Reveal/dist/demo/images/3-after.jpg"
+                    title="Evil"> </div>
+            <div id="example4" class="imageReveal"> <img
+                    src="https://www.jqueryscript.net/demo/jQuery-Before-After-Image-Comparison-Plugin-Image-Reveal/dist/demo/images/4-before.jpg"
+                    title="Before"> <img
+                    src="https://www.jqueryscript.net/demo/jQuery-Before-After-Image-Comparison-Plugin-Image-Reveal/dist/demo/images/4-after.jpg"
+                    title="After"> </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#example1').imageReveal({
+                barWidth: 15,
+                touchBarWidth: 40,
+                paddingLeft: 0,
+                paddingRight: 0,
+                startPosition: 0.25,
+                showCaption: true,
+                captionChange: 0.5,
+                width: 500,
+                height: 350
+            });
+
+            $('#example2').imageReveal({
+                barWidth: 15,
+                touchBarWidth: 40,
+                paddingLeft: 60,
+                paddingRight: 60,
+                showCaption: true,
+                startPosition: 0.5,
+                captionChange: 0.5,
+                width: 250,
+                height: 250
+            });
+
+            $('#example3, #example4').imageReveal({
+                barWidth: 20,
+                touchBarWidth: 40,
+                paddingLeft: 0,
+                paddingRight: 0,
+                showCaption: true,
+                startPosition: 0.5,
+                captionChange: 0.5,
+                width: 250,
+                height: 250
+            });
+
+            $('.example5').imageReveal({
+                barWidth: 15,
+                touchBarWidth: 40,
+                paddingLeft: 0,
+                paddingRight: 0,
+                showCaption: true,
+                startPosition: 0.5,
+                captionChange: 0.5,
+                width: 250,
+                height: 250
+            });
+        });
+    </script>
+</body>
+
+</html>
